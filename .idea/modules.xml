@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ping-builder-service.iml" filepath="$PROJECT_DIR$/.idea/modules/ping-builder-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ping-builder-service_main.iml" filepath="$PROJECT_DIR$/.idea/modules/ping-builder-service_main.iml" group="ping-builder-service" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ping-builder-service_test.iml" filepath="$PROJECT_DIR$/.idea/modules/ping-builder-service_test.iml" group="ping-builder-service" />
+    </modules>
+  </component>
+</project>
