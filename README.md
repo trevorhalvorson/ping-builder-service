@@ -13,8 +13,8 @@ Built using the [Ktor](https://github.com/Kotlin/ktor) framework.
 3. Set *Use classpath of module* to `ping-builder-service_main`
 4. Set *Environment variables*:
     - `PORT`: port this server will run on
-    - `BUILDER_URL`: Jenkins URL
-    - `BUILDER_CRUMB`: Jenkins crumb
+    - `BUILDER_URL`: Jenkins build job URL
+    - `BUILDER_CRUMB_URL`: Jenkins url for fetching the crumb as json
     - `BUILDER_USERNAME`: Jenkins username
     - `BUILDER_PASSWORD`: Jenkins user password
     

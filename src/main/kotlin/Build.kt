@@ -1,6 +1,7 @@
 import com.google.gson.Gson
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.run
+import model.crumb.Crumb
 import model.builder.BuilderResponse
 import model.config.Configuration
 import model.config.ConfigurationResponse
@@ -16,7 +17,7 @@ import org.jetbrains.ktor.routing.Route
 import java.io.IOException
 
 
-private val BUILDER_CRUMB = System.getenv("BUILDER_CRUMB")
+private val BUILDER_CRUMB_URL = System.getenv("BUILDER_CRUMB_URL")
 private val BUILDER_URL = System.getenv("BUILDER_URL")
 private val BUILDER_USERNAME = System.getenv("BUILDER_USERNAME")
 private val BUILDER_PASSWORD = System.getenv("BUILDER_PASSWORD")
@@ -42,6 +43,22 @@ fun Route.build(client: OkHttpClient) {
 }
 
 private suspend fun startBuilder(client: OkHttpClient, configs: MutableMap<String, String>): BuilderResponse {
+    val crumbRequest = Request.Builder()
+            .url(BUILDER_CRUMB_URL)
+            .addHeader("Authorization", Credentials.basic(BUILDER_USERNAME, BUILDER_PASSWORD))
+            .get()
+            .build()
+
+    var crumb: Crumb? = null
+    client.newCall(crumbRequest).execute().use { crumbResponse ->
+        if (!crumbResponse.isSuccessful || crumbResponse.body() == null) {
+            App.logger.error(crumbResponse.message())
+            throw IOException("Unexpected code " + crumbResponse)
+        }
+
+        crumb = Gson().fromJson(crumbResponse.body()?.string(), Crumb::class.java)
+    }
+
     val builder = MultipartBody.Builder()
     builder.setType(MultipartBody.FORM)
 
@@ -52,7 +69,7 @@ private suspend fun startBuilder(client: OkHttpClient, configs: MutableMap<Strin
     val buildRequest = Request.Builder()
             .url(BUILDER_URL)
             .addHeader("Authorization", Credentials.basic(BUILDER_USERNAME, BUILDER_PASSWORD))
-            .addHeader("Jenkins-Crumb", BUILDER_CRUMB)
+            .addHeader(crumb!!.crumbRequestField, crumb!!.crumb)
             .post(builder.build())
             .build()
 
