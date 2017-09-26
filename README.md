@@ -29,7 +29,7 @@ Add a `.env` file to the root of the project containing your environment variabl
 ```
 PORT=5001
 BUILDER_URL=http://sample.com:8080/
-BUILDER_CRUMB=000000000000000000000000
+BUILDER_CRUMB_URL=http://jenkinsurl.com:8080/crumbIssuer/api/json
 BUILDER_USERNAME=username
 BUILDER_PASSWORD=password
 ```
