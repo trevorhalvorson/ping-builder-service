@@ -27,7 +27,7 @@ fun Route.build(client: OkHttpClient) {
         try {
             run(CommonPool) {
                 val config = call.receive<Configuration>()
-                val builderResponse = startBuilder(client, config.configsMap)
+                val builderResponse = startBuilder(client, ConfigMap(config).configsMap)
                 call.respond(ConfigurationResponse(builderResponse.success, builderResponse.response))
             }
         } catch (e: Exception) {
@@ -85,5 +85,36 @@ private suspend fun startBuilder(client: OkHttpClient, configs: MutableMap<Strin
             App.logger.error(e.localizedMessage, buildRequest.body())
             BuilderResponse(false, e.localizedMessage)
         }
+    }
+}
+
+class ConfigMap(configuration: Configuration) {
+    var configsMap: MutableMap<String, String> = HashMap()
+
+    init {
+        configsMap.put("titleText", configuration.titleText)
+        configsMap.put("titleTextSize", configuration.titleTextSize)
+        configsMap.put("titleTextColor", configuration.titleTextColor)
+        configsMap.put("imageUrl", configuration.imageUrl)
+        configsMap.put("imageWidth", configuration.imageWidth)
+        configsMap.put("imageHeight", configuration.imageHeight)
+        configsMap.put("imageScaleType", configuration.imageScaleType)
+        configsMap.put("copyText", configuration.copyText)
+        configsMap.put("copyTextSize", configuration.copyTextSize)
+        configsMap.put("copyTextColor", configuration.copyTextColor)
+        configsMap.put("sendButtonText", configuration.sendButtonText)
+        configsMap.put("sendButtonTextColor", configuration.sendButtonTextColor)
+        configsMap.put("sendButtonBackgroundColor", configuration.sendButtonBackgroundColor)
+        configsMap.put("phoneInputTextColor", configuration.phoneInputTextColor)
+        configsMap.put("phoneInputBackgroundColor", configuration.phoneInputBackgroundColor)
+        configsMap.put("numPadTextColor", configuration.numPadTextColor)
+        configsMap.put("numPadBackgroundColor", configuration.numPadBackgroundColor)
+        configsMap.put("backgroundColor", configuration.backgroundColor)
+        configsMap.put("pin", configuration.pin)
+        configsMap.put("message", configuration.message)
+        configsMap.put("messagingUrlBase", configuration.messagingUrlBase)
+        configsMap.put("messagingUrlPath", configuration.messagingUrlPath)
+        configsMap.put("builderUrlBase", configuration.builderUrlBase)
+        configsMap.put("builderUrlPath", configuration.builderUrlPath)
     }
 }

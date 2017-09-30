@@ -3,60 +3,28 @@ package model.config
 import com.google.gson.annotations.SerializedName
 
 open class Configuration(
-        @SerializedName("titleText") private val titleText: String,
-        @SerializedName("titleTextSize") private val titleTextSize: String,
-        @SerializedName("titleTextColor") private val titleTextColor: String,
-        @SerializedName("imageUrl") private val imageUrl: String,
-        @SerializedName("imageWidth") private val imageWidth: String,
-        @SerializedName("imageHeight") private val imageHeight: String,
-        @SerializedName("imageScaleType") private val imageScaleType: String,
-        @SerializedName("copyText") private val copyText: String,
-        @SerializedName("copyTextSize") private val copyTextSize: String,
-        @SerializedName("copyTextColor") private val copyTextColor: String,
-        @SerializedName("sendButtonText") private val sendButtonText: String,
-        @SerializedName("sendButtonTextColor") private val sendButtonTextColor: String,
-        @SerializedName("sendButtonBackgroundColor") private val sendButtonBackgroundColor: String,
-        @SerializedName("phoneInputTextColor") private val phoneInputTextColor: String,
-        @SerializedName("phoneInputBackgroundColor") private val phoneInputBackgroundColor: String,
-        @SerializedName("numPadTextColor") private val numPadTextColor: String,
-        @SerializedName("numPadBackgroundColor") private val numPadBackgroundColor: String,
-        @SerializedName("backgroundColor") private val backgroundColor: String,
-        @SerializedName("pin") private val pin: String,
-        @SerializedName("message") private val message: String,
-        @SerializedName("messagingUrlBase") private val messagingUrlBase: String,
-        @SerializedName("messagingUrlPath") private val messagingUrlPath: String,
-        @SerializedName("builderUrlBase") private val builderUrlBase: String,
-        @SerializedName("builderUrlPath") private val builderUrlPath: String
-) {
-
-    var configsMap: MutableMap<String, String> = HashMap()
-
-    init {
-        configsMap.put("titleText", titleText)
-        configsMap.put("titleText", titleText)
-        configsMap.put("titleTextSize", titleTextSize)
-        configsMap.put("titleTextColor", titleTextColor)
-        configsMap.put("imageUrl", imageUrl)
-        configsMap.put("imageWidth", imageWidth)
-        configsMap.put("imageHeight", imageHeight)
-        configsMap.put("imageScaleType", imageScaleType)
-        configsMap.put("copyText", copyText)
-        configsMap.put("copyTextSize", copyTextSize)
-        configsMap.put("copyTextColor", copyTextColor)
-        configsMap.put("sendButtonText", sendButtonText)
-        configsMap.put("sendButtonTextColor", sendButtonTextColor)
-        configsMap.put("sendButtonBackgroundColor", sendButtonBackgroundColor)
-        configsMap.put("phoneInputTextColor", phoneInputTextColor)
-        configsMap.put("phoneInputBackgroundColor", phoneInputBackgroundColor)
-        configsMap.put("numPadTextColor", numPadTextColor)
-        configsMap.put("numPadBackgroundColor", numPadBackgroundColor)
-        configsMap.put("backgroundColor", backgroundColor)
-        configsMap.put("pin", pin)
-        configsMap.put("message", message)
-        configsMap.put("messagingUrlBase", messagingUrlBase)
-        configsMap.put("messagingUrlPath", messagingUrlPath)
-        configsMap.put("builderUrlBase", builderUrlBase)
-        configsMap.put("builderUrlPath", builderUrlPath)
-    }
-
-}
+        @SerializedName("titleText") val titleText: String,
+        @SerializedName("titleTextSize") val titleTextSize: String,
+        @SerializedName("titleTextColor") val titleTextColor: String,
+        @SerializedName("imageUrl") val imageUrl: String,
+        @SerializedName("imageWidth") val imageWidth: String,
+        @SerializedName("imageHeight") val imageHeight: String,
+        @SerializedName("imageScaleType") val imageScaleType: String,
+        @SerializedName("copyText") val copyText: String,
+        @SerializedName("copyTextSize") val copyTextSize: String,
+        @SerializedName("copyTextColor") val copyTextColor: String,
+        @SerializedName("sendButtonText") val sendButtonText: String,
+        @SerializedName("sendButtonTextColor") val sendButtonTextColor: String,
+        @SerializedName("sendButtonBackgroundColor") val sendButtonBackgroundColor: String,
+        @SerializedName("phoneInputTextColor") val phoneInputTextColor: String,
+        @SerializedName("phoneInputBackgroundColor") val phoneInputBackgroundColor: String,
+        @SerializedName("numPadTextColor") val numPadTextColor: String,
+        @SerializedName("numPadBackgroundColor") val numPadBackgroundColor: String,
+        @SerializedName("backgroundColor") val backgroundColor: String,
+        @SerializedName("pin") val pin: String,
+        @SerializedName("message") val message: String,
+        @SerializedName("messagingUrlBase") val messagingUrlBase: String,
+        @SerializedName("messagingUrlPath") val messagingUrlPath: String,
+        @SerializedName("builderUrlBase") val builderUrlBase: String,
+        @SerializedName("builderUrlPath") val builderUrlPath: String
+)
