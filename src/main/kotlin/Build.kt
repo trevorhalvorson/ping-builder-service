@@ -27,14 +27,13 @@ fun Route.build(client: OkHttpClient) {
         try {
             run(CommonPool) {
                 val config = call.receive<Configuration>()
-                config.setConfigs()
-                val builderResponse = startBuilder(client, config.configs())
+                val builderResponse = startBuilder(client, config.configsMap)
                 call.respond(ConfigurationResponse(builderResponse.success, builderResponse.response))
             }
         } catch (e: Exception) {
             App.logger.error(call.request.logInfo(), e)
             call.respondText(
-                    Gson().toJson(ConfigurationResponse(false, e.localizedMessage)),
+                    Gson().toJson(ConfigurationResponse(false, "Unable to start build")),
                     ContentType.Application.Json,
                     HttpStatusCode.BadRequest
             )
@@ -43,9 +42,11 @@ fun Route.build(client: OkHttpClient) {
 }
 
 private suspend fun startBuilder(client: OkHttpClient, configs: MutableMap<String, String>): BuilderResponse {
+    val credentials = Credentials.basic(BUILDER_USERNAME, BUILDER_PASSWORD)
+
     val crumbRequest = Request.Builder()
             .url(BUILDER_CRUMB_URL)
-            .addHeader("Authorization", Credentials.basic(BUILDER_USERNAME, BUILDER_PASSWORD))
+            .addHeader("Authorization", credentials)
             .get()
             .build()
 
@@ -68,7 +69,7 @@ private suspend fun startBuilder(client: OkHttpClient, configs: MutableMap<Strin
 
     val buildRequest = Request.Builder()
             .url(BUILDER_URL)
-            .addHeader("Authorization", Credentials.basic(BUILDER_USERNAME, BUILDER_PASSWORD))
+            .addHeader("Authorization", credentials)
             .addHeader(crumb!!.crumbRequestField, crumb!!.crumb)
             .post(builder.build())
             .build()

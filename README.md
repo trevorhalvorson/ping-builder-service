@@ -63,8 +63,10 @@ add your variables to your project's Config Variables in the Heroku platform
     "backgroundColor": "0xFFFFFFFF",
     "pin": "\"0000\"",
     "message": "\"Sample SMS message to send\"",
-    "urlBase": "\"http://sample.com\"",
-    "urlPath": "\"ping\""
+    "messagingUrlBase": "\"http://sample-messaging.com\"",
+    "messagingUrlPath": "\"ping\"",
+    "builderUrlBase": "\"http://sample-builder.com\"",
+    "builderUrlPath": "\"build\""
 }
 ```
 
@@ -73,6 +75,6 @@ add your variables to your project's Config Variables in the Heroku platform
 ```json
 {
     "success": true,
-    "message": "sample message"
+    "message": "details"
 }
 ```
