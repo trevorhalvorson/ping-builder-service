@@ -116,5 +116,6 @@ class ConfigMap(configuration: Configuration) {
         configsMap.put("messagingUrlPath", configuration.messagingUrlPath)
         configsMap.put("builderUrlBase", configuration.builderUrlBase)
         configsMap.put("builderUrlPath", configuration.builderUrlPath)
+        configsMap.put("email", configuration.email)
     }
 }

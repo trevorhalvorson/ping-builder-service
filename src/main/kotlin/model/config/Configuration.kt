@@ -26,5 +26,6 @@ open class Configuration(
         @SerializedName("messagingUrlBase") val messagingUrlBase: String,
         @SerializedName("messagingUrlPath") val messagingUrlPath: String,
         @SerializedName("builderUrlBase") val builderUrlBase: String,
-        @SerializedName("builderUrlPath") val builderUrlPath: String
+        @SerializedName("builderUrlPath") val builderUrlPath: String,
+        @SerializedName("email") val email: String
 )
