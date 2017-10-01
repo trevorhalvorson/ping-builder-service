@@ -66,7 +66,8 @@ add your variables to your project's Config Variables in the Heroku platform
     "messagingUrlBase": "\"http://sample-messaging.com\"",
     "messagingUrlPath": "\"ping\"",
     "builderUrlBase": "\"http://sample-builder.com\"",
-    "builderUrlPath": "\"build\""
+    "builderUrlPath": "\"build\"",
+    "email": "\"email@test.com\""
 }
 ```
 
