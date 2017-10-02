@@ -10,7 +10,7 @@ import org.jetbrains.ktor.features.logInfo
 import org.jetbrains.ktor.http.ContentType
 import org.jetbrains.ktor.http.HttpStatusCode
 import org.jetbrains.ktor.locations.post
-import org.jetbrains.ktor.request.receive
+import org.jetbrains.ktor.request.receiveText
 import org.jetbrains.ktor.response.respond
 import org.jetbrains.ktor.response.respondText
 import org.jetbrains.ktor.routing.Route
@@ -26,7 +26,7 @@ fun Route.build(client: OkHttpClient) {
     post<Build> {
         try {
             run(CommonPool) {
-                val config = call.receive<Configuration>()
+                val config = Gson().fromJson(call.receiveText(), Configuration::class.java)
                 val builderResponse = startBuilder(client, ConfigMap(config).configsMap)
                 call.respond(ConfigurationResponse(builderResponse.success, builderResponse.response))
             }
